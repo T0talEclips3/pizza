@@ -1,13 +1,15 @@
-const PizzaBlock = () => {
+import { IPizza } from "../types";
+
+const PizzaBlock = (props: IPizza) => {
   return (
     <article className='pizza-block'>
       <figure>
         <img
           className='pizza-block__image'
-          src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
+          src={props.imageUrl}
           alt='Pizza'
         />
-        <figcaption className='pizza-block__title'>Чизбургер-пицца</figcaption>{" "}
+        <figcaption className='pizza-block__title'>{props.name}</figcaption>{" "}
       </figure>
       <div className='pizza-block__selector'>
         <ul>
