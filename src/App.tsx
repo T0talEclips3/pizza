@@ -1,4 +1,3 @@
-import React from "react";
 import { Route } from "react-router";
 import { Header, Container } from "./components";
 import Menu from "./pages/Menu";
@@ -6,7 +5,6 @@ import Menu from "./pages/Menu";
 import "./scss/app.scss";
 
 export default function App() {
-
   return (
     <div className='wrapper'>
       <Header />

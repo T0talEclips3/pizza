@@ -1,34 +1,30 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Categories, PizzaBlock, Sorting } from "../components";
-import { IPizza } from "../types";
-import { setPizzas } from "../redux/actions/pizzas";
+import { fetchPizzas } from "../redux/actions/pizzas";
+import { IStore } from "../types";
 
-type Props = {
-  pizzas: IPizza[];
-  dispatch: Function;
-};
-
-const Menu = (props: Props) => {
-  const pizzaType = ["Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые"];
+const Menu = () => {
+  const dispatch = useDispatch();
+  const { pizzas, filters } = useSelector(({ pizzas, filters }: IStore) => ({
+    pizzas: pizzas.pizzaObjects,
+    filters: filters,
+  }));
 
   React.useEffect(() => {
-    fetch("http://localhost:3001/pizzas")
-      .then((response) => response.json())
-      .then((data) => {
-        props.dispatch(setPizzas(data));
-      });
-  }, []);
+    dispatch(fetchPizzas(filters.category, filters.sortBy));
+    // eslint-disable-next-line
+  }, [filters]);
 
   return (
     <>
       <div className='content__top'>
-        <Categories pizzaTypes={pizzaType} />
-        <Sorting />
+        <Categories dispatch={dispatch} category={filters.category} />
+        <Sorting dispatch={dispatch} sortBy={filters.sortBy} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <section className='content__items'>
-        {props.pizzas?.map((pizza, index) => (
+        {pizzas.map((pizza) => (
           <PizzaBlock {...pizza} />
         ))}
       </section>
@@ -36,10 +32,4 @@ const Menu = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return {
-    pizzas: state.pizzas.pizzas,
-  };
-};
-
-export default connect(mapStateToProps)(Menu);
+export default Menu;

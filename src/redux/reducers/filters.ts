@@ -1,13 +1,13 @@
 import { IReduxAction } from "../../types";
 
 const defaultState = {
-  category: 0,
-  sortBy: "popular",
+  category: null,
+  sortBy: "rating",
 };
 
 const filters = (
   state = defaultState,
-  action: IReduxAction<string | number>
+  action: IReduxAction<number | string | null>
 ) => {
   switch (action.type) {
     case "SET:CATEGORY":

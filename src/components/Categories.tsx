@@ -1,27 +1,40 @@
 import React from "react";
+import { Dispatch } from "redux";
+import { setCategory } from "../redux/actions/filters";
 
-type CategoriesProps = {
-  pizzaTypes: Array<string>;
-};
+export interface ICategoriesProps {
+  category: null | number;
+  dispatch: Dispatch;
+}
 
-const Categories = (props: CategoriesProps) => {
-  const [category, setCategory] = React.useState<number | null>(null);
+const Categories = React.memo(({ category, dispatch }: ICategoriesProps) => {
+  const pizzaTypes = [
+    "Мясные",
+    "Вегетарианская",
+    "Гриль",
+    "Острые",
+    "Закрытые",
+  ];
 
   return (
     <nav className='categories'>
       <ul>
         <li
           className={category === null ? "active" : ""}
-          onClick={() => setCategory(null)}
+          onClick={() => {
+            dispatch(setCategory(null));
+          }}
         >
           Все
         </li>
-        {props.pizzaTypes.map((pizzaType, index) => (
+        {pizzaTypes.map((pizzaType, index) => (
           <li
             key={pizzaType + "_" + index}
             className={category === index ? "active" : ""}
             onClick={() => {
-              setCategory(index);
+              if (category !== index) {
+                dispatch(setCategory(index));
+              }
             }}
           >
             {pizzaType}
@@ -30,6 +43,6 @@ const Categories = (props: CategoriesProps) => {
       </ul>
     </nav>
   );
-};
+});
 
 export default Categories;

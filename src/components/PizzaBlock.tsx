@@ -4,12 +4,10 @@ const PizzaBlock = (props: IPizza) => {
   return (
     <article className='pizza-block'>
       <figure>
-        <img
-          className='pizza-block__image'
-          src={props.imageUrl}
-          alt='Pizza'
-        />
-        <figcaption className='pizza-block__title'>{props.name}</figcaption>{" "}
+        <img className='pizza-block__image' src={props.imageUrl} alt='Pizza' />
+        <figcaption className='pizza-block__title'>
+          {props.name}
+        </figcaption>{" "}
       </figure>
       <div className='pizza-block__selector'>
         <ul>
@@ -23,7 +21,7 @@ const PizzaBlock = (props: IPizza) => {
         </ul>
       </div>
       <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>от 395 ₽</div>
+        <div className='pizza-block__price'>от {props.price} ₽</div>
         <div className='button button--outline button--add'>
           <svg
             width='12'

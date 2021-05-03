@@ -1,20 +1,29 @@
-type SortingPopupPropsType = {
-  setSortingType: Function;
-  sortings: Array<string>;
-};
+import { Dispatch } from "redux";
+import { setSortBy } from "../redux/actions/filters";
 
-const SortingPopup = ({ setSortingType, sortings }: SortingPopupPropsType) => {
+export interface ISortingPopupProps {
+  dispatch: Dispatch;
+  sortingOnjects: Array<{ name: string; type: string }>;
+  setCurrentSorting: Function;
+}
+
+const SortingPopup = ({
+  dispatch,
+  sortingOnjects,
+  setCurrentSorting,
+}: ISortingPopupProps) => {
   return (
     <div className='sort__popup'>
       <ul>
-        {sortings.map((sorting, index) => (
+        {sortingOnjects.map((sortingOnject, index) => (
           <li
-            key={sorting + "_" + index}
+            key={sortingOnject.name + "_" + index}
             onClick={() => {
-              setSortingType(index);
+              dispatch(setSortBy(sortingOnject.type));
+              setCurrentSorting(sortingOnject.name);
             }}
           >
-            {sorting}
+            {sortingOnject.name}
           </li>
         ))}
       </ul>

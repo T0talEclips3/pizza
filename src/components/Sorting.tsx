@@ -1,10 +1,21 @@
 import React from "react";
+import { Dispatch } from "redux";
 import SortingPopup from "./SortingPopup";
 
-const Sorting = () => {
-  const sortings = ["Популярности", "Цене", "Алфавиту"];
-  const [sortingType, setSortingType] = React.useState(0);
+export interface ISortingProps {
+  sortBy: string;
+  dispatch: Dispatch;
+}
+
+const Sorting = ({ dispatch, sortBy }: ISortingProps) => {
+  const sortingOnjects = [
+    { name: "Популярности", type: "rating" },
+    { name: "Цене", type: "price" },
+    { name: "Алфавиту", type: "name" },
+  ];
+
   const [popupVisibility, setpopupVisibility] = React.useState(false);
+  const [currentSorting, setCurrentSorting] = React.useState('популярности');
   const sortingRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleClick = (event: MouseEvent) => {
@@ -37,10 +48,10 @@ const Sorting = () => {
             setpopupVisibility(true);
           }}
         >
-          {sortings[sortingType]}
+          {currentSorting}
         </span>
         {popupVisibility && (
-          <SortingPopup setSortingType={setSortingType} sortings={sortings} />
+          <SortingPopup dispatch={dispatch} sortingOnjects={sortingOnjects} setCurrentSorting={setCurrentSorting}/>
         )}
       </div>
     </div>

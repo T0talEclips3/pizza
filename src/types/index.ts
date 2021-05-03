@@ -13,3 +13,8 @@ export interface IReduxAction<T> {
   type: string;
   payload?: T;
 }
+
+export interface IStore {
+  pizzas: {  pizzaObjects: IPizza[], isLoaded: boolean, };
+  filters: { category: number | null; sortBy: string };
+}
