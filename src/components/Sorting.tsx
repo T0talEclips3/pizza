@@ -15,7 +15,7 @@ const Sorting = ({ dispatch, sortBy }: ISortingProps) => {
   ];
 
   const [popupVisibility, setpopupVisibility] = React.useState(false);
-  const [currentSorting, setCurrentSorting] = React.useState('популярности');
+  const [currentSorting, setCurrentSorting] = React.useState("популярности");
   const sortingRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleClick = (event: MouseEvent) => {
@@ -51,7 +51,11 @@ const Sorting = ({ dispatch, sortBy }: ISortingProps) => {
           {currentSorting}
         </span>
         {popupVisibility && (
-          <SortingPopup dispatch={dispatch} sortingOnjects={sortingOnjects} setCurrentSorting={setCurrentSorting}/>
+          <SortingPopup
+            dispatch={dispatch}
+            sortingOnjects={sortingOnjects}
+            setCurrentSorting={setCurrentSorting}
+          />
         )}
       </div>
     </div>

@@ -2,14 +2,18 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Categories, PizzaBlock, Sorting } from "../components";
 import { fetchPizzas } from "../redux/actions/pizzas";
-import { IStore } from "../types";
+import { IRootState } from "../types";
 
 const Menu = () => {
   const dispatch = useDispatch();
-  const { pizzas, filters } = useSelector(({ pizzas, filters }: IStore) => ({
-    pizzas: pizzas.pizzaObjects,
-    filters: filters,
-  }));
+  const { pizzas, filters, cart } = useSelector(
+    ({ pizzas, filters, cart }: IRootState) => ({
+      pizzas: pizzas.pizzaObjects,
+      filters: filters,
+      cart: cart.items
+    })
+  );
+console.log(cart);
 
   React.useEffect(() => {
     dispatch(fetchPizzas(filters.category, filters.sortBy));
@@ -25,7 +29,7 @@ const Menu = () => {
       <h2 className='content__title'>Все пиццы</h2>
       <section className='content__items'>
         {pizzas.map((pizza) => (
-          <PizzaBlock {...pizza} />
+          <PizzaBlock key={pizza.id + '_' + pizza.category} {...pizza} dispatch={dispatch}/>
         ))}
       </section>
     </>

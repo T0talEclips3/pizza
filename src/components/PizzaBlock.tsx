@@ -1,28 +1,73 @@
+import React from "react";
+import { Dispatch } from "redux";
+import { updateCart } from "../redux/actions/cart";
 import { IPizza } from "../types";
 
-const PizzaBlock = (props: IPizza) => {
+interface IPizzaBlockProps extends IPizza {
+  dispatch: Dispatch;
+}
+
+const PizzaBlock = (props: IPizzaBlockProps) => {
+  const { id, imageUrl, name, types, sizes, price, dispatch } = props;
+
+  const allSizes = [26, 30, 40];
+  const allDough = [0, 1];
+
+  const [pizzaSize, setPizzaSize] = React.useState(sizes[0]);
+  const [dough, setDough] = React.useState(types[0]);
+
+  const handleClickDispatch = () => {
+    dispatch(updateCart({ id, imageUrl, name, dough, pizzaSize, price }));
+  };
+
   return (
     <article className='pizza-block'>
       <figure>
-        <img className='pizza-block__image' src={props.imageUrl} alt='Pizza' />
-        <figcaption className='pizza-block__title'>
-          {props.name}
-        </figcaption>{" "}
+        <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+        <figcaption className='pizza-block__title'>{props.name}</figcaption>
       </figure>
       <div className='pizza-block__selector'>
         <ul>
-          <li className='active'>тонкое</li>
-          <li>традиционное</li>
+          {allDough.map((doughType) => {
+            const doughName = doughType === 0 ? "тонкое" : "традиционное";
+
+            return types.includes(doughType) ? (
+              <li
+                className={dough === doughType ? "active" : ""}
+                onClick={() => {
+                  setDough(doughType);
+                }}
+              >
+                {doughName}
+              </li>
+            ) : (
+              <li className='disabled'>{doughName}</li>
+            );
+          })}
         </ul>
         <ul>
-          <li className='active'>26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {allSizes.map((sizeType) => {
+            return sizes.includes(sizeType) ? (
+              <li
+                className={sizeType === pizzaSize ? "active" : ""}
+                onClick={() => {
+                  setPizzaSize(sizeType);
+                }}
+              >
+                {sizeType} см.
+              </li>
+            ) : (
+              <li className='disabled'>{sizeType} см.</li>
+            );
+          })}
         </ul>
       </div>
       <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>от {props.price} ₽</div>
-        <div className='button button--outline button--add'>
+        <div className='pizza-block__price'>от {price} ₽</div>
+        <div
+          className='button button--outline button--add'
+          onClick={handleClickDispatch}
+        >
           <svg
             width='12'
             height='12'

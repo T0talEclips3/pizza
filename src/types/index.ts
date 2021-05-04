@@ -14,7 +14,8 @@ export interface IReduxAction<T> {
   payload?: T;
 }
 
-export interface IStore {
-  pizzas: {  pizzaObjects: IPizza[], isLoaded: boolean, };
+export interface IRootState {
+  pizzas: { pizzaObjects: IPizza[]; isLoaded: boolean };
   filters: { category: number | null; sortBy: string };
+  cart: { items: []; totalPrice: number; totalCount: number };
 }
