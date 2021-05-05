@@ -81,7 +81,6 @@ const PizzaBlock = (props: IPizzaBlockProps) => {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
         </div>
       </div>
     </article>

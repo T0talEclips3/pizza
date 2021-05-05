@@ -10,10 +10,9 @@ const Menu = () => {
     ({ pizzas, filters, cart }: IRootState) => ({
       pizzas: pizzas.pizzaObjects,
       filters: filters,
-      cart: cart.items
+      cart: cart
     })
   );
-console.log(cart);
 
   React.useEffect(() => {
     dispatch(fetchPizzas(filters.category, filters.sortBy));
@@ -29,7 +28,11 @@ console.log(cart);
       <h2 className='content__title'>Все пиццы</h2>
       <section className='content__items'>
         {pizzas.map((pizza) => (
-          <PizzaBlock key={pizza.id + '_' + pizza.category} {...pizza} dispatch={dispatch}/>
+          <PizzaBlock
+            key={pizza.id + "_" + pizza.category}
+            {...pizza}
+            dispatch={dispatch}
+          />
         ))}
       </section>
     </>

@@ -9,13 +9,30 @@ export interface IPizza {
   rating: number;
 }
 
+export interface IPizzaInCart {
+  id: number;
+  imageUrl: string;
+  name: string;
+  dough: number;
+  pizzaSize: number;
+  price: number;
+}
+
 export interface IReduxAction<T> {
   type: string;
-  payload?: T;
+  payload: T;
 }
 
 export interface IRootState {
   pizzas: { pizzaObjects: IPizza[]; isLoaded: boolean };
   filters: { category: number | null; sortBy: string };
-  cart: { items: []; totalPrice: number; totalCount: number };
+  cart: ICartState;
+}
+
+export interface ICartState {
+  items: {
+    [id: number]: Array<IPizzaInCart>;
+  };
+  totalPrice: number;
+  totalCount: number;
 }
