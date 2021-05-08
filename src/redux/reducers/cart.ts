@@ -1,6 +1,6 @@
-import { IPizzaInCart, IReduxAction, ICartState } from "../../types";
+import { IPizzaInCart, IReduxAction } from "../../types";
 
-const initialState: ICartState = {
+const initialState: any = {
   items: {},
   totalCount: 0,
   totalPrice: 0,
@@ -9,26 +9,26 @@ const initialState: ICartState = {
 const cart = (state = initialState, action: IReduxAction<IPizzaInCart>) => {
   switch (action.type) {
     case "UPDATE:CART:ITEMS":
-      
-    const objectItems = {
-        ...state.items,
-        [action.payload.id]: !state.items[action.payload.id]
-          ? [action.payload]
-          : [...state.items[action.payload.id], action.payload],
-      };
-
-      const pizzaObjectArray = Array(0).concat.apply(
-        [],
-        Object.values(objectItems)
-      );
-        
       return {
         ...state,
         items: {
-          ...objectItems,
+          ...state.items,
+          [action.payload.id]: !state.items[action.payload.id]
+            ? { [action.payload.dough]: [action.payload] }
+            : {
+                ...state.items[action.payload.id],
+                [action.payload.dough]: !state.items[action.payload.id][
+                  action.payload.dough
+                ]
+                  ? [action.payload]
+                  : [
+                      ...state.items[action.payload.id][action.payload.dough],
+                      action.payload,
+                    ],
+              },
         },
-        totalCount: pizzaObjectArray.length,
-        totalPrice: pizzaObjectArray.reduce((sum, obj) => obj.price + sum, 0),
+        totalCount: 322,
+        totalPrice: 322,
       };
     default:
       return state;
@@ -36,3 +36,5 @@ const cart = (state = initialState, action: IReduxAction<IPizzaInCart>) => {
 };
 
 export default cart;
+
+//!state.items[action.payload.id][action.payload.dough] ? [action.payload] : [...state.items[action.payload.id][action.payload.dough], action.payload]

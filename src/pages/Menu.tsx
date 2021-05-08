@@ -1,22 +1,21 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Categories, PizzaBlock, Sorting } from "../components";
 import { fetchPizzas } from "../redux/actions/pizzas";
 import { IRootState } from "../types";
 
 const Menu = () => {
   const dispatch = useDispatch();
-  const { pizzas, filters, cart } = useSelector(
-    ({ pizzas, filters, cart }: IRootState) => ({
+  const { pizzas, filters } = useSelector(
+    ({ pizzas, filters }: IRootState) => ({
       pizzas: pizzas.pizzaObjects,
       filters: filters,
-      cart: cart
-    })
+    }),
+    shallowEqual
   );
 
   React.useEffect(() => {
     dispatch(fetchPizzas(filters.category, filters.sortBy));
-    // eslint-disable-next-line
   }, [filters]);
 
   return (

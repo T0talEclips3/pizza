@@ -17,7 +17,7 @@ const Categories = React.memo(({ category, dispatch }: ICategoriesProps) => {
   ];
 
   return (
-    <nav className='categories'> 
+    <nav className='categories'>
       <ul>
         <li
           className={category === null ? "active" : ""}

@@ -1,20 +1,24 @@
-@import 'fonts';
-@import 'variables';
-@import 'libs/normalize';
+@import "fonts";
+@import "variables";
+@import "libs/normalize";
 
-@import 'components/all';
+@import "components/all";
 
 body {
   background-color: $background;
 }
 
 .wrapper {
-  width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1400px;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    border-radius: 0;
+    max-width: max-content;
+  }
 }
 
 .content {
@@ -27,7 +31,7 @@ body {
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   &__top {

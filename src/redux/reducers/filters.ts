@@ -2,7 +2,7 @@ import { IReduxAction } from "../../types";
 
 const defaultState = {
   category: null,
-  sortBy: "rating",
+  sortBy: { name: "Популярности", type: "rating" },
 };
 
 const filters = (
