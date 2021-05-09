@@ -31,7 +31,10 @@ export interface IRootState {
 
 export interface ICartState {
   items: {
-    [id: number]: Array<IPizzaInCart>;
+    [itemId: string]: {
+      pizza: IPizzaInCart;
+      count: number;
+    };
   };
   totalPrice: number;
   totalCount: number;

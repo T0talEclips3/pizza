@@ -1,6 +1,6 @@
 import React from "react";
 import { Dispatch } from "redux";
-import { updateCart } from "../redux/actions/cart";
+import { addItem } from "../redux/actions/cart";
 import { IPizza } from "../types";
 
 interface IPizzaBlockProps extends IPizza {
@@ -17,22 +17,23 @@ const PizzaBlock = (props: IPizzaBlockProps) => {
   const [dough, setDough] = React.useState(types[0]);
 
   const handleClickDispatch = () => {
-    dispatch(updateCart({ id, imageUrl, name, dough, pizzaSize, price }));
+    dispatch(addItem({ id, imageUrl, name, dough, pizzaSize, price }));
   };
 
   return (
     <article className='pizza-block'>
       <figure>
         <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
-        <figcaption className='pizza-block__title'>{props.name}</figcaption>
+        <figcaption className='pizza-block__title'>{name}</figcaption>
       </figure>
       <div className='pizza-block__selector'>
         <ul>
-          {allDough.map((doughType) => {
+          {allDough.map((doughType, index) => {
             const doughName = doughType === 0 ? "тонкое" : "традиционное";
 
             return types.includes(doughType) ? (
               <li
+                key={index + "+" + doughType}
                 className={dough === doughType ? "active" : ""}
                 onClick={() => {
                   setDough(doughType);
@@ -41,14 +42,20 @@ const PizzaBlock = (props: IPizzaBlockProps) => {
                 {doughName}
               </li>
             ) : (
-              <li className='disabled'>{doughName}</li>
+              <li
+                key={index + "+" + doughType + "disabled"}
+                className='disabled'
+              >
+                {doughName}
+              </li>
             );
           })}
         </ul>
         <ul>
-          {allSizes.map((sizeType) => {
+          {allSizes.map((sizeType, index) => {
             return sizes.includes(sizeType) ? (
               <li
+                key={index + "+" + sizeType}
                 className={sizeType === pizzaSize ? "active" : ""}
                 onClick={() => {
                   setPizzaSize(sizeType);
@@ -57,7 +64,12 @@ const PizzaBlock = (props: IPizzaBlockProps) => {
                 {sizeType} см.
               </li>
             ) : (
-              <li className='disabled'>{sizeType} см.</li>
+              <li
+                key={index + "+" + sizeType + "disabled"}
+                className='disabled'
+              >
+                {sizeType} см.
+              </li>
             );
           })}
         </ul>

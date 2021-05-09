@@ -16,6 +16,8 @@ const Menu = () => {
 
   React.useEffect(() => {
     dispatch(fetchPizzas(filters.category, filters.sortBy));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
   return (

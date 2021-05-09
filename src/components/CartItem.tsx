@@ -1,7 +1,9 @@
+import { deleteItem, addItem, deleteItems } from "../redux/actions/cart";
 import { IPizzaInCart } from "../types";
 
 interface ICartItemProps extends IPizzaInCart {
-    number: number
+  number: number;
+  dispatch: Function;
 }
 
 const CartItem = ({
@@ -11,8 +13,19 @@ const CartItem = ({
   imageUrl,
   price,
   pizzaSize,
-  number
+  number,
+  dispatch,
 }: ICartItemProps) => {
+  const pizzaObj = { id, name, dough, imageUrl, price, pizzaSize };
+  const handleClickAdd = () => {
+    dispatch(addItem(pizzaObj));
+  };
+  const handleClickDelete = () => {
+    dispatch(deleteItem(pizzaObj));
+  };
+  const handleClickDeleteAll = () => {
+    dispatch(deleteItems(pizzaObj));
+  };
   return (
     <div className='cart__item'>
       <div className='cart__item-img'>
@@ -25,7 +38,10 @@ const CartItem = ({
         </p>
       </div>
       <div className='cart__item-count'>
-        <div className='button button--outline button--circle cart__item-count-minus'>
+        <div
+          onClick={handleClickDelete}
+          className='button button--outline button--circle cart__item-count-minus'
+        >
           <svg
             width='10'
             height='10'
@@ -44,7 +60,10 @@ const CartItem = ({
           </svg>
         </div>
         <b>{number}</b>
-        <div className='button button--outline button--circle cart__item-count-plus'>
+        <div
+          onClick={handleClickAdd}
+          className='button button--outline button--circle cart__item-count-plus'
+        >
           <svg
             width='10'
             height='10'
@@ -67,7 +86,10 @@ const CartItem = ({
         <b>{price} ₽</b>
       </div>
       <div className='cart__item-remove'>
-        <div className='button button--outline button--circle'>
+        <div
+          onClick={handleClickDeleteAll}
+          className='button button--outline button--circle'
+        >
           <svg
             width='10'
             height='10'
