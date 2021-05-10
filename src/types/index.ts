@@ -24,9 +24,9 @@ export interface IReduxAction<T> {
 }
 
 export interface IRootState {
-  pizzas: { pizzaObjects: IPizza[]; isLoaded: boolean };
   filters: { category: number | null; sortBy: { name: string; type: string } };
   cart: ICartState;
+    menu: { pizzaObjects: IPizza[]; isLoaded: boolean };
 }
 
 export interface ICartState {

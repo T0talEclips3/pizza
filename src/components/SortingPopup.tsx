@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { setSortBy } from "../redux/actions/filters";
+import { setSortingType } from "../redux/filters";
 
 export interface ISortingPopupProps {
   dispatch: Dispatch;
@@ -14,7 +14,7 @@ const SortingPopup = ({ dispatch, sortingOnjects }: ISortingPopupProps) => {
           <li
             key={sortingOnject.name + "_" + index}
             onClick={() => {
-              dispatch(setSortBy(sortingOnject));
+              dispatch(setSortingType(sortingOnject));
             }}
           >
             {sortingOnject.name}

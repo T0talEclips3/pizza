@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { IPizza, IReduxAction } from "../../types";
+import * as actions from "./actions";
 
 export const fetchPizzas = (
   category: number | null,
@@ -15,10 +16,6 @@ export const fetchPizzas = (
       }`
     )
     .then(({ data }) => {
-      dispatch(setPizzas(data));
+      dispatch(actions.storePizzas(data));
     });
-};
-
-export const setPizzas = (paylaod: IPizza[]) => {
-  return { type: "SET:PIZZAS", payload: paylaod };
 };

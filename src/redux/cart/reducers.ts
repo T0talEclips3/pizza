@@ -8,7 +8,7 @@ const initialState: ICartState = {
 
 const cart = (state = initialState, action: IReduxAction<IPizzaInCart>) => {
   switch (action.type) {
-    case "UPDATE:CART:ITEM":
+    case "cart/addOne":
       const itemId =
         action.payload.id +
         "" +
@@ -29,11 +29,7 @@ const cart = (state = initialState, action: IReduxAction<IPizzaInCart>) => {
         totalCount: ++state.totalCount,
         totalPrice: state.totalPrice + items[itemId].pizza.price,
       };
-
-    case "WIPE:CART:ITEMS":
-      return { items: {}, totalCount: 0, totalPrice: 0 };
-
-    case "DELETE:CART:ITEM":
+    case "cart/deleteOne":
       const specId =
         action.payload.id +
         "" +
@@ -66,8 +62,9 @@ const cart = (state = initialState, action: IReduxAction<IPizzaInCart>) => {
         totalCount: --state.totalCount,
         totalPrice: state.totalPrice - itemss[specId].pizza.price,
       };
-
-    case "DELETE:CART:ITEMS":
+    case "cart/wipeAll":
+      return { items: {}, totalCount: 0, totalPrice: 0 };
+    case "cart/deleteEntry":
       const newId =
         action.payload.id +
         "" +

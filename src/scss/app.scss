@@ -241,7 +241,6 @@ body {
         align-items: center;
         justify-content: center;
         width: 210px;
-
         border-color: darken($color: $gray-line, $amount: 10);
 
         span {
@@ -253,7 +252,9 @@ body {
         &:hover {
           background-color: darken($color: $gray-line, $amount: 90);
           border-color: darken($color: $gray-line, $amount: 90);
-
+          a {
+            color: white;
+          }
           span {
             color: $gray-line;
           }

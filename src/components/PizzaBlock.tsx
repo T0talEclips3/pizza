@@ -1,6 +1,6 @@
 import React from "react";
 import { Dispatch } from "redux";
-import { addItem } from "../redux/actions/cart";
+import { addItem } from "../redux/cart";
 import { IPizza } from "../types";
 
 interface IPizzaBlockProps extends IPizza {

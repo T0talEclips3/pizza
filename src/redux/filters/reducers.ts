@@ -1,3 +1,4 @@
+import * as types from "./types";
 import { IReduxAction } from "../../types";
 
 const defaultState = {
@@ -10,9 +11,9 @@ const filters = (
   action: IReduxAction<number | string | null>
 ) => {
   switch (action.type) {
-    case "SET:CATEGORY":
+    case types.SET_PIZZA_CATEGORY:
       return { ...state, category: action.payload };
-    case "SET:SORTBY":
+    case types.SET_SORTING_TYPE:
       return { ...state, sortBy: action.payload };
     default:
       return state;

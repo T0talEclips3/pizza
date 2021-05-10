@@ -1,14 +1,14 @@
 import React from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Categories, PizzaBlock, Sorting } from "../components";
-import { fetchPizzas } from "../redux/actions/pizzas";
+import { fetchPizzas } from "../redux/menu";
 import { IRootState } from "../types";
 
 const Menu = () => {
   const dispatch = useDispatch();
-  const { pizzas, filters } = useSelector(
-    ({ pizzas, filters }: IRootState) => ({
-      pizzas: pizzas.pizzaObjects,
+  const { menu, filters } = useSelector(
+    ({ menu, filters }: IRootState) => ({
+      menu: menu.pizzaObjects,
       filters: filters,
     }),
     shallowEqual
@@ -28,7 +28,7 @@ const Menu = () => {
       </div>
       <h2 className='content__title'>Все пиццы</h2>
       <section className='content__items'>
-        {pizzas.map((pizza) => (
+        {menu.map((pizza) => (
           <PizzaBlock
             key={pizza.id + "_" + pizza.category}
             {...pizza}
