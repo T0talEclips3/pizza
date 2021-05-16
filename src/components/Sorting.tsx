@@ -3,11 +3,11 @@ import { Dispatch } from "redux";
 import SortingPopup from "./SortingPopup";
 
 export interface ISortingProps {
-  sortBy: { name: string; type: string };
+  sorting: { name: string; type: string };
   dispatch: Dispatch;
 }
 
-const Sorting = React.memo(({ dispatch, sortBy }: ISortingProps) => {
+const Sorting = React.memo(({ dispatch, sorting }: ISortingProps) => {
   const sortingOnjects = [
     { name: "Популярности", type: "rating" },
     { name: "Цене", type: "price" },
@@ -36,7 +36,7 @@ const Sorting = React.memo(({ dispatch, sortBy }: ISortingProps) => {
       <div className='sort__label'>
         <b>Сортировка по:</b>
         <span onClick={handleClickPopupVisibility} ref={sortingRef}>
-          {sortBy.name}
+          {sorting.name}
         </span>
         {popupVisibility && (
           <SortingPopup dispatch={dispatch} sortingOnjects={sortingOnjects} />

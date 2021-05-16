@@ -7,7 +7,6 @@
   padding: 10px 20px;
   min-width: 100px;
   text-align: center;
-  cursor: pointer;
   transition: background-color $duration ease-in-out,
     border-color $duration ease-in-out;
   border: 1px solid transparent;
@@ -43,6 +42,7 @@
     min-width: 32px;
     padding: 0;
     border-width: 2px;
+    user-select: none;
   }
 
   &--black {
@@ -62,12 +62,6 @@
       color: $orange;
     }
 
-    svg {
-      path {
-        fill: $orange;
-      }
-    }
-
     &:hover {
       background-color: $orange;
 
@@ -76,10 +70,8 @@
         color: #fff;
       }
 
-      svg {
-        path {
-          fill: #fff;
-        }
+      img {
+        filter: grayscale(100%) brightness(250%);
       }
     }
 
@@ -89,6 +81,9 @@
   }
 
   &__delimiter {
+    @media (max-width: 992px) {
+      display: none;
+    }
     width: 1px;
     height: 25px;
     background-color: rgba(255, 255, 255, 0.25);
@@ -131,19 +126,23 @@
   }
 
   &--cart {
-    display: flex;
-    align-items: center;
-    line-height: 23px;
-    padding: 12px 25px;
-
-    svg {
-      margin-right: 8px;
-      margin-bottom: 1px;
-    }
-
-    span {
-      font-weight: 600;
-      font-size: 16px;
+    padding: 0;
+    a {
+      line-height: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 25px;
+      span {
+        font-weight: 600;
+        font-size: 16px;
+        @media (max-width: 992px) {
+          &:first-child {
+            display: none;
+          }
+        }
+      }
     }
   }
 }

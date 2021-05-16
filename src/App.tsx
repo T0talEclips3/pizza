@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router";
-import { Header, Container } from "./components";
+import { Header } from "./components";
 import Cart from "./pages/Cart";
 import Menu from "./pages/Menu";
 
@@ -10,7 +10,7 @@ export default function App() {
     <div className='wrapper'>
       <Header />
       <div className='content'>
-        <Container>
+        <div className='container'>
           <Switch>
             <Route exact path='/'>
               <Menu />
@@ -19,7 +19,7 @@ export default function App() {
               <Cart />
             </Route>
           </Switch>
-        </Container>
+        </div>
       </div>
     </div>
   );

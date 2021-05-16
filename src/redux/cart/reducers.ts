@@ -1,4 +1,4 @@
-import { ICartState, IPizzaInCart, IReduxAction } from "../../types";
+import { ICartState, IPizzaObject, IReduxAction } from "../../types";
 
 const initialState: ICartState = {
   items: {},
@@ -6,7 +6,7 @@ const initialState: ICartState = {
   totalPrice: 0,
 };
 
-const cart = (state = initialState, action: IReduxAction<IPizzaInCart>) => {
+const cart = (state = initialState, action: IReduxAction<IPizzaObject>) => {
   switch (action.type) {
     case "cart/addOne":
       const itemId =

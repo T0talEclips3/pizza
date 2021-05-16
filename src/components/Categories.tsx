@@ -8,7 +8,6 @@ export interface ICategoriesProps {
 }
 
 const Categories = React.memo(({ category, dispatch }: ICategoriesProps) => {
-  
   const pizzaTypes = [
     "Мясные",
     "Вегетарианская",

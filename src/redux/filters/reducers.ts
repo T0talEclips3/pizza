@@ -3,7 +3,7 @@ import { IReduxAction } from "../../types";
 
 const defaultState = {
   category: null,
-  sortBy: { name: "Популярности", type: "rating" },
+  sorting: { name: "Популярности", type: "rating" },
 };
 
 const filters = (
@@ -14,7 +14,7 @@ const filters = (
     case types.SET_PIZZA_CATEGORY:
       return { ...state, category: action.payload };
     case types.SET_SORTING_TYPE:
-      return { ...state, sortBy: action.payload };
+      return { ...state, sorting: action.payload };
     default:
       return state;
   }

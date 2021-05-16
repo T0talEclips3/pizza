@@ -1,9 +1,16 @@
-@import '../variables';
+@import "../variables";
 
 .categories {
+  @media (max-width: 992px) {
+    margin-bottom: 39px;
+  }
   ul {
     display: flex;
-    flex-wrap: wrap;
+    @media (max-width: 992px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
     li {
       background-color: #f9f9f9;
       padding: 13px 30px;

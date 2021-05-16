@@ -1,4 +1,4 @@
-export interface IPizza {
+export interface IMenuItem {
   id: number;
   imageUrl: string;
   name: string;
@@ -9,7 +9,7 @@ export interface IPizza {
   rating: number;
 }
 
-export interface IPizzaInCart {
+export interface IPizzaObject {
   id: number;
   imageUrl: string;
   name: string;
@@ -23,19 +23,28 @@ export interface IReduxAction<T> {
   payload: T;
 }
 
-export interface IRootState {
-  filters: { category: number | null; sortBy: { name: string; type: string } };
-  cart: ICartState;
-    menu: { pizzaObjects: IPizza[]; isLoaded: boolean };
-}
-
 export interface ICartState {
   items: {
     [itemId: string]: {
-      pizza: IPizzaInCart;
+      pizza: IPizzaObject;
       count: number;
     };
   };
   totalPrice: number;
   totalCount: number;
+}
+
+export interface IFiletersState {
+  category: number | null;
+  sorting: { name: string; type: string };
+}
+
+export interface IMenuState {
+  menuItems: IMenuItem[];
+  isLoaded: boolean;
+}
+export interface IRootState {
+  filters: IFiletersState;
+  cart: ICartState;
+  menu: IMenuState;
 }

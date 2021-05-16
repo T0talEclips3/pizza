@@ -1,6 +1,6 @@
-import { IPizza } from "../../types";
+import { IMenuItem } from "../../types";
 import { STORE_PIZZAS } from "./types";
 
-export const storePizzas = (paylaod: IPizza[]) => {
+export const storePizzas = (paylaod: IMenuItem[]) => {
   return { type: STORE_PIZZAS, payload: paylaod };
 };

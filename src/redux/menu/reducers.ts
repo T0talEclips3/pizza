@@ -1,15 +1,15 @@
-import { IPizza, IReduxAction } from "../../types";
+import { IMenuItem, IReduxAction } from "../../types";
 import { STORE_PIZZAS } from "./types";
 
 const defaultState = {
-  pizzaObjects: [],
+  menuItems: [],
   isLoaded: false,
 };
 
-const menu = (state = defaultState, action: IReduxAction<IPizza[]>) => {
+const menu = (state = defaultState, action: IReduxAction<IMenuItem[]>) => {
   switch (action.type) {
     case STORE_PIZZAS:
-      return { isLoaded: true, pizzaObjects: action.payload };
+      return { isLoaded: true, menuItems: action.payload };
     default:
       return state;
   }

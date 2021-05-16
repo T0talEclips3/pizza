@@ -1,13 +1,15 @@
 import React from "react";
 import { Dispatch } from "redux";
 import { addItem } from "../redux/cart";
-import { IPizza } from "../types";
+import { IMenuItem } from "../types";
+import plusIcon from "../assets/img/plus-icon.svg";
+import Button from "./Button";
 
-interface IPizzaBlockProps extends IPizza {
+export interface IMenuItemProps extends IMenuItem {
   dispatch: Dispatch;
 }
 
-const PizzaBlock = (props: IPizzaBlockProps) => {
+const PizzaBlock = (props: IMenuItemProps) => {
   const { id, imageUrl, name, types, sizes, price, dispatch } = props;
 
   const allSizes = [26, 30, 40];
@@ -21,12 +23,12 @@ const PizzaBlock = (props: IPizzaBlockProps) => {
   };
 
   return (
-    <article className='pizza-block'>
+    <article className='menu-item'>
       <figure>
-        <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
-        <figcaption className='pizza-block__title'>{name}</figcaption>
+        <img className='menu-item__image' src={imageUrl} alt='menu-item' />
+        <figcaption className='menu-item__title'>{name}</figcaption>
       </figure>
-      <div className='pizza-block__selector'>
+      <div className='menu-item__selector'>
         <ul>
           {allDough.map((doughType, index) => {
             const doughName = doughType === 0 ? "тонкое" : "традиционное";
@@ -74,26 +76,12 @@ const PizzaBlock = (props: IPizzaBlockProps) => {
           })}
         </ul>
       </div>
-      <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>от {price} ₽</div>
-        <div
-          className='button button--outline button--add'
-          onClick={handleClickDispatch}
-        >
-          <svg
-            width='12'
-            height='12'
-            viewBox='0 0 12 12'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z'
-              fill='white'
-            />
-          </svg>
+      <div className='menu-item__bottom'>
+        <div className='menu-item__price'>от {price} ₽</div>
+        <Button add outline clickHandler={handleClickDispatch}>
+          <img src={plusIcon} alt='plus-icon' />
           <span>Добавить</span>
-        </div>
+        </Button>
       </div>
     </article>
   );
