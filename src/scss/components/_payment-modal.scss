@@ -1,7 +1,4 @@
-// body {
-//     height: 100%;
-//     overflow-y: hidden;
-// }
+@use '../variables' as var;
 
 .modal {
   position: fixed;
@@ -11,6 +8,17 @@
   width: 100%;
   height: 100vh;
   padding-top: 10%;
+  &-background {
+    overflow-y: hidden;
+  }
+  &-success {
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+    &__pic {
+      width: 250px;
+    }
+  }
   &-content {
     background-color: white;
     margin: auto;
@@ -19,11 +27,50 @@
     border-radius: 10px;
   }
   &-header {
+    position: relative;
+    button {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
   &-form {
+    fieldset {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      border-color: transparent;
+      padding-bottom: 16px;
+      legend {
+        background-color: var.$orange;
+        color: #fff;
+        text-align: center;
+        padding: 3px 6px;
+        border-radius: 0.25rem;
+      }
+    }
     &__field {
+      &:not(:first-child) {
+        margin-top: 1rem;
+      }
+      label {
+        display: block;
+        text-align: center;
+        line-height: 1.75;
+      }
+      input {
+        align-self: flex-end;
+        height: 28px;
+        width: 12rem;
+        border-radius: 0.25rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
     }
   }
   &-footer {
+    margin-top: 1rem;
+    width: fit-content;
+    margin: 0 auto;
   }
 }

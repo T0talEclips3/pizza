@@ -1,19 +1,33 @@
 export interface IFormStepOneProps {
   handleFormChange: React.ChangeEventHandler<HTMLInputElement>;
+  phoneNumber: string;
+  firstName: string;
+  lastName: string;
 }
-const FormStepOne = ({ handleFormChange }: IFormStepOneProps) => {
+const FormStepOne = ({
+  handleFormChange,
+  firstName,
+  lastName,
+  phoneNumber,
+}: IFormStepOneProps) => {
   return (
-    <>
+    <fieldset>
+      <legend>Укажите контактные данные</legend>
       <div className='modal-form__field'>
         <label>Телефон</label>
-        <input type='tel' name='phoneNumber' value={""} onChange={handleFormChange} />
+        <input
+          type='tel'
+          name='phoneNumber'
+          value={phoneNumber}
+          onChange={handleFormChange}
+        />
       </div>
       <div className='modal-form__field'>
         <label>Имя</label>
         <input
           type='text'
-          name='street'
-          value={"street"}
+          name='firstName'
+          value={firstName}
           onChange={handleFormChange}
         />
       </div>
@@ -21,13 +35,12 @@ const FormStepOne = ({ handleFormChange }: IFormStepOneProps) => {
         <label>Фамилия</label>
         <input
           type='text'
-          name='house'
-          value={"house"}
+          name='lastName'
+          value={lastName}
           onChange={handleFormChange}
         />
       </div>
-
-    </>
+    </fieldset>
   );
 };
 

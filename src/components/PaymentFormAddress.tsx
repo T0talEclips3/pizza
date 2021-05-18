@@ -1,20 +1,36 @@
 export interface IFormStepTwoProps {
   handleFormChange: React.ChangeEventHandler<HTMLInputElement>;
+  city: string;
+  street: string;
+  house: string;
+  apartment: string;
 }
 
-const FormStepTwo = ({ handleFormChange }: IFormStepTwoProps) => {
+const FormStepTwo = ({
+  handleFormChange,
+  city,
+  apartment,
+  house,
+  street,
+}: IFormStepTwoProps) => {
   return (
-    <>
+    <fieldset>
+      <legend>Укажите адрес доставки</legend>
       <div className='modal-form__field'>
         <label>Город</label>
-        <input type='text' name='city' value={""} onChange={handleFormChange} />
+        <input
+          type='text'
+          name='city'
+          value={city}
+          onChange={handleFormChange}
+        />
       </div>
       <div className='modal-form__field'>
         <label>Улица</label>
         <input
           type='text'
           name='street'
-          value={"street"}
+          value={street}
           onChange={handleFormChange}
         />
       </div>
@@ -23,7 +39,7 @@ const FormStepTwo = ({ handleFormChange }: IFormStepTwoProps) => {
         <input
           type='text'
           name='house'
-          value={"house"}
+          value={house}
           onChange={handleFormChange}
         />
       </div>
@@ -32,11 +48,11 @@ const FormStepTwo = ({ handleFormChange }: IFormStepTwoProps) => {
         <input
           type='text'
           name='apartment'
-          value={"apartment"}
+          value={apartment}
           onChange={handleFormChange}
         />
       </div>
-    </>
+    </fieldset>
   );
 };
 
