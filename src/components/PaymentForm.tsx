@@ -120,7 +120,7 @@ const PaymentForm = ({ closePaymentModal }: IPaymentFormProps) => {
             </Button>
           </header>
           <form className='modal-form'>
-            <PaymentFormSuccess />
+            <PaymentFormSuccess closePaymentModal={closePaymentModal}/>
           </form>
         </div>
       );

@@ -1,14 +1,22 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import successImg from "../assets/img/success-svgrepo-com.svg";
+import { wipeCart } from "../redux/cart";
 
-const PaymentFormSuccess = () => {
+interface IPaymentFormSuccessProps {
+  closePaymentModal: Function;
+}
+
+const PaymentFormSuccess = ({
+  closePaymentModal,
+}: IPaymentFormSuccessProps) => {
+  const dispatch = useDispatch();
+
   React.useEffect(() => {
     setTimeout(() => {
-      const modal = document.querySelector(".modal");
-      const wrapper = document.querySelector(".wrapper");
-      wrapper!.removeChild(modal!);
-      document.body.className = "";
-    }, 5000);
+      closePaymentModal();
+      dispatch(wipeCart());
+    }, 3000);
   });
 
   return (
